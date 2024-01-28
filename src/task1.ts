@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /**
 Задание к TypeScript: Part 2 будет проверять ваше умение использовать и вычислять типы
 Все задания устроены таким образом что в них есть тип FIXME (который any) и ваша задача избавится от него
@@ -9,17 +10,11 @@
 // Нужно заменить FIXME на тип который вычисляется на освове OrderState
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type FIXME = any;
+type FIXME = Array<Exclude<OrderState, "buyingSupplies" | "producing">>;
 
-const orderStates = [
-  "initial",
-  "inWork",
-  "buyingSupplies",
-  "producing",
-  "fullfilled",
-] as const;
+const orderStates = ["initial", "inWork", "buyingSupplies", "producing", "fullfilled"] as const;
 
-type OrderState = typeof orderStates[number];
+type OrderState = (typeof orderStates)[number];
 
 export const getUserOrderStates = (orderStates: OrderState[]): FIXME => {
   const filteredStates = [] as FIXME;
